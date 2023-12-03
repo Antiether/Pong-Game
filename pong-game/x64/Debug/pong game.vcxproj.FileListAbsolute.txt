@@ -1,1 +1,0 @@
-C:\Games\gameprj\pong game\pong game\x64\Debug\pong game.vcxproj.CopyComplete
