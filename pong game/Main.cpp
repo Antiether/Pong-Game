@@ -1,5 +1,6 @@
 #include <raylib.h>
 #include <cstdio>
+#include <algorithm>
 
 using namespace std;
 
@@ -76,6 +77,14 @@ enum GameState
     Playing,
 };
 
+enum ScoreLimit
+{
+    ScoreLimit5 = 5,
+    ScoreLimit10 = 10,
+    ScoreLimit15 = 15,
+    ScoreLimit20 = 20,
+};
+
 int main()
 {
     InitWindow(800, 600, "Pong");
@@ -114,6 +123,7 @@ int main()
     char buffer[256];
 
     GameState gameState = StartMenu;
+    ScoreLimit scoreLimit = ScoreLimit5;
 
     while (!WindowShouldClose())
     {
@@ -124,13 +134,27 @@ int main()
             ClearBackground(DARKPURPLE);
 
             DrawText("Pong - Start Menu", GetScreenWidth() / 2 - MeasureText("Pong - Start Menu", 30) / 2, GetScreenHeight() / 4, 30, WHITE);
-            DrawText("Press Enter to Start", GetScreenWidth() / 2 - MeasureText("Press Enter to Start", 20) / 2, GetScreenHeight() / 2, 20, WHITE);
+            DrawText("Choose Score Limit Using Z,X,C,V Button", GetScreenWidth() / 2 - MeasureText("Choose Score Limit Using Z,X,C,V Button", 20) / 2, GetScreenHeight() / 2 - 30, 20, WHITE);
+            DrawText("Score Limit:", 10, GetScreenHeight() - 50, 20, WHITE);
+            DrawText("5 ", 160, GetScreenHeight() - 50, (scoreLimit == ScoreLimit5) ? 30 : 20, (scoreLimit == ScoreLimit5) ? YELLOW : WHITE);
+            DrawText("10", 220, GetScreenHeight() - 50, (scoreLimit == ScoreLimit10) ? 30 : 20, (scoreLimit == ScoreLimit10) ? YELLOW : WHITE);
+            DrawText("15", 280, GetScreenHeight() - 50, (scoreLimit == ScoreLimit15) ? 30 : 20, (scoreLimit == ScoreLimit15) ? YELLOW : WHITE);
+            DrawText("20", 340, GetScreenHeight() - 50, (scoreLimit == ScoreLimit20) ? 30 : 20, (scoreLimit == ScoreLimit20) ? YELLOW : WHITE);
 
             EndDrawing();
+
+            if (IsKeyPressed(KEY_Z)) scoreLimit = ScoreLimit5;
+            else if (IsKeyPressed(KEY_X)) scoreLimit = ScoreLimit10;
+            else if (IsKeyPressed(KEY_C)) scoreLimit = ScoreLimit15;
+            else if (IsKeyPressed(KEY_V)) scoreLimit = ScoreLimit20;
 
             if (IsKeyPressed(KEY_ENTER))
             {
                 gameState = Playing;
+                player1Score = 0;
+                player2Score = 0;
+                winnerText = nullptr;
+                restartGame = nullptr;
             }
             break;
 
@@ -187,8 +211,18 @@ int main()
                 if (!winnerText)
                 {
                     player2Score++;
-                    winnerText = "Player 2 Wins!";
-                    restartGame = "press space to restart";
+                    if (player2Score == scoreLimit)
+                    {
+                        winnerText = "Player 2 Wins!";
+                        restartGame = "Press Enter to Return to Start Menu";
+                    }
+                    else
+                    {
+                        ball.x = GetScreenWidth() / 2;
+                        ball.y = GetScreenHeight() / 2;
+                        ball.speedX = 300;
+                        ball.speedY = 300;
+                    }
                 }
             }
             if (ball.x > GetScreenWidth())
@@ -196,18 +230,27 @@ int main()
                 if (!winnerText)
                 {
                     player1Score++;
-                    winnerText = "Player 1 Wins!";
-                    restartGame = "press space to restart";
+                    if (player1Score == scoreLimit)
+                    {
+                        winnerText = "Player 1 Wins!";
+                        restartGame = "Press Enter to Return to Start Menu";
+                    }
+                    else
+                    {
+                        ball.x = GetScreenWidth() / 2;
+                        ball.y = GetScreenHeight() / 2;
+                        ball.speedX = 300;
+                        ball.speedY = 300;
+                    }
                 }
             }
-            if (winnerText && IsKeyPressed(KEY_SPACE))
+            if (winnerText && IsKeyPressed(KEY_ENTER))
             {
-                ball.x = GetScreenWidth() / 2;
-                ball.y = GetScreenHeight() / 2;
-                ball.speedX = 300;
-                ball.speedY = 300;
                 winnerText = nullptr;
                 restartGame = nullptr;
+                player1Score = 0;
+                player2Score = 0;
+                gameState = StartMenu;
             }
 
             BeginDrawing();
@@ -234,8 +277,14 @@ int main()
 
             DrawFPS(10, 10);
 
-            snprintf(buffer, sizeof(buffer), "%d - %d", player1Score, player2Score);
+             snprintf(buffer, sizeof(buffer), "%d - %d", player1Score, player2Score);
             DrawText(buffer, GetScreenWidth() / 2 - MeasureText("0 - 0", 20) / 2, 10, 20, WHITE);
+
+            DrawText("Score Limit:", 10, GetScreenHeight() - 50, 20, WHITE);
+            DrawText("5 ", 130, GetScreenHeight() - 50, (scoreLimit == ScoreLimit5) ? 30 : 20, (scoreLimit == ScoreLimit5) ? YELLOW : WHITE);
+            DrawText("10", 190, GetScreenHeight() - 50, (scoreLimit == ScoreLimit10) ? 30 : 20, (scoreLimit == ScoreLimit10) ? YELLOW : WHITE);
+            DrawText("15", 250, GetScreenHeight() - 50, (scoreLimit == ScoreLimit15) ? 30 : 20, (scoreLimit == ScoreLimit15) ? YELLOW : WHITE);
+            DrawText("20", 310, GetScreenHeight() - 50, (scoreLimit == ScoreLimit20) ? 30 : 20, (scoreLimit == ScoreLimit20) ? YELLOW : WHITE);
 
             EndDrawing();
             break;
