@@ -1,0 +1,23 @@
+﻿C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(531,5): warning MSB8028: The intermediate directory (x64\Debug\) contains files shared from another project (pong game.vcxproj).  This can lead to incorrect clean and rebuild behavior.
+  Main.cpp
+C:\Games\gameprj\pong game\pong game\Main.cpp(41,110): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Games\gameprj\pong game\pong game\Main.cpp(41,96): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Games\gameprj\pong game\pong game\Main.cpp(41,83): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\Games\gameprj\pong game\pong game\Main.cpp(41,47): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\Games\gameprj\pong game\pong game\Main.cpp(48,35): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Games\gameprj\pong game\pong game\Main.cpp(48,23): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Games\gameprj\pong game\pong game\Main.cpp(49,35): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Games\gameprj\pong game\pong game\Main.cpp(49,23): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Games\gameprj\pong game\pong game\Main.cpp(70,28): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Games\gameprj\pong game\pong game\Main.cpp(70,20): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Games\gameprj\pong game\pong game\Main.cpp(114,38): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Games\gameprj\pong game\pong game\Main.cpp(121,38): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Games\gameprj\pong game\pong game\Main.cpp(122,39): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Games\gameprj\pong game\pong game\Main.cpp(195,41): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Games\gameprj\pong game\pong game\Main.cpp(255,51): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Games\gameprj\pong game\pong game\Main.cpp(256,52): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Games\gameprj\pong game\pong game\Main.cpp(278,51): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Games\gameprj\pong game\pong game\Main.cpp(279,52): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+  pong game.vcxproj -> C:\Games\gameprj\pong game\x64\Debug\pong-game.exe
+  'pwsh.exe' is not recognized as an internal or external command,
+  operable program or batch file.
